@@ -45,3 +45,18 @@ PORT=4000 npm start
 | PATCH | `/api/refunds/:id` | Update a request's status |
 
 ## Project Structure
+
+```
+refund-tool/
+├── package.json
+├── README.md
+├── NOTES.md
+├── server/
+│   ├── server.js       (Express routes)
+│   ├── db.js             (data access layer)
+│   └── data/              (JSON data file, auto-created on first run)
+└── public/
+    ├── index.html
+    ├── style.css
+    └── app.js
+```
