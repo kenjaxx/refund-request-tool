@@ -30,6 +30,7 @@ body {
   margin: 0 auto;
   padding: 2.5rem 0 1.5rem;
   border-bottom: 2px solid var(--ink);
+  animation: fadeSlideIn 0.5s ease-out;
 }
 
 .eyebrow {
@@ -67,6 +68,35 @@ body {
   border: 1px solid var(--line);
   border-radius: 3px;
   padding: 1.5rem;
+  animation: fadeSlideIn 0.5s ease-out;
+  animation-fill-mode: backwards;
+}
+
+.intake-slip {
+  animation-delay: 0.05s;
+}
+
+.ledger {
+  animation-delay: 0.15s;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desk-header,
+  .intake-slip,
+  .ledger {
+    animation: none;
+  }
 }
 
 .intake-slip h2,
@@ -97,6 +127,7 @@ body {
   font-family: 'Inter', sans-serif;
   font-size: 0.92rem;
   background: var(--paper);
+  transition: outline-color 0.15s ease;
 }
 
 .field input:focus,
@@ -117,10 +148,16 @@ button {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   cursor: pointer;
+  transition: background 0.15s ease;
 }
 
 button:hover {
   background: var(--brass);
+}
+
+button:disabled {
+  background: var(--ink-soft);
+  cursor: default;
 }
 
 .error-message {
@@ -159,6 +196,12 @@ button:hover {
   border-radius: 3px;
   padding: 0.35rem 0.5rem;
   font-family: 'Inter', sans-serif;
+  transition: outline-color 0.15s ease;
+}
+
+.filter select:focus {
+  outline: 2px solid var(--brass);
+  outline-offset: 1px;
 }
 
 table {
@@ -182,6 +225,14 @@ td {
   padding: 0.65rem 0.5rem;
   border-bottom: 1px solid var(--line);
   vertical-align: top;
+}
+
+tbody tr {
+  transition: background 0.12s ease;
+}
+
+tbody tr:hover {
+  background: var(--paper);
 }
 
 .ticket-id {
@@ -219,6 +270,12 @@ td {
   padding: 0.3rem 0.4rem;
   font-family: 'Inter', sans-serif;
   font-size: 0.82rem;
+  transition: outline-color 0.15s ease;
+}
+
+.status-select:focus {
+  outline: 2px solid var(--brass);
+  outline-offset: 1px;
 }
 
 .empty-state {

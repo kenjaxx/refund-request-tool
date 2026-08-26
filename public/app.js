@@ -1,5 +1,6 @@
 const form = document.getElementById('refund-form');
 const formError = document.getElementById('form-error');
+const submitButton = form.querySelector('button[type="submit"]');
 const statusFilter = document.getElementById('status-filter');
 const ledgerBody = document.getElementById('ledger-body');
 const emptyState = document.getElementById('empty-state');
@@ -112,6 +113,10 @@ form.addEventListener('submit', async (e) => {
     reason: document.getElementById('reason').value,
   };
 
+  const originalLabel = submitButton.textContent;
+  submitButton.disabled = true;
+  submitButton.textContent = 'Filing...';
+
   const res = await fetch('/api/refunds', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -122,11 +127,19 @@ form.addEventListener('submit', async (e) => {
 
   if (!res.ok) {
     formError.textContent = data.error;
+    submitButton.disabled = false;
+    submitButton.textContent = originalLabel;
     return;
   }
 
   form.reset();
   fetchRefunds();
+
+  submitButton.textContent = 'Filed ✓';
+  setTimeout(() => {
+    submitButton.disabled = false;
+    submitButton.textContent = originalLabel;
+  }, 1200);
 });
 
 statusFilter.addEventListener('change', fetchRefunds);
