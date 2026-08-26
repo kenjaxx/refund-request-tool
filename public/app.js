@@ -7,7 +7,6 @@ const emptyState = document.getElementById('empty-state');
 const STATUSES = ['Pending', 'Approved', 'Rejected', 'Refunded', 'Cancelled'];
 let ticketMap = {};
 
-// Ticket numbers are assigned by creation order, not shown as raw ids
 async function refreshTicketMap() {
   const res = await fetch('/api/refunds');
   const all = await res.json();
@@ -31,6 +30,15 @@ async function fetchRefunds() {
   const res = await fetch(url);
   const data = await res.json();
   renderLedger(data);
+  updateCount();
+}
+
+async function updateCount() {
+  const res = await fetch('/api/refunds');
+  const all = await res.json();
+  const pending = all.filter((r) => r.status === 'Pending').length;
+  const countEl = document.getElementById('ledger-count');
+  countEl.textContent = `${all.length} request${all.length === 1 ? '' : 's'} · ${pending} pending`;
 }
 
 function renderLedger(refunds) {

@@ -139,6 +139,14 @@ button:hover {
   margin-bottom: 1rem;
 }
 
+.ledger-count {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin-right: auto;
+  margin-left: 0.75rem;
+}
+
 .filter {
   display: flex;
   align-items: center;
@@ -204,6 +212,7 @@ td {
 .stamp-Rejected { color: var(--stamp-rejected); }
 .stamp-Refunded { color: var(--stamp-refunded); }
 .stamp-Cancelled { color: var(--stamp-cancelled); }
+
 .status-select {
   border: 1px solid var(--line);
   border-radius: 3px;
